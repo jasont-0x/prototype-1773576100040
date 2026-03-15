@@ -1,0 +1,42 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "How often do you want to feed?" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {{ govukBackLink({ text: "Back", href: "javascript:history.back()" }) }}
+
+    {% if errors and errors["feeding-frequency"] %}
+    {{ govukErrorSummary({
+      titleText: "There is a problem",
+      errorList: [{ text: errors["feeding-frequency"], href: "#feeding-frequency" }]
+    }) }}
+    {% endif %}
+
+    <form method="post" novalidate>
+    {{ govukRadios({
+      name: "feeding-frequency",
+      fieldset: {
+        legend: {
+          text: "How often do you want to feed?",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+      errorMessage: errors["feeding-frequency"] if errors else null,
+      value: data["feeding-frequency"],
+      items: [
+        { value: "every-2-hours", text: "Every 2 hours" },
+        { value: "every-3-hours", text: "Every 3 hours" },
+        { value: "every-4-hours", text: "Every 4 hours" },
+        { value: "on-demand", text: "When I feel like it" }
+      ]
+    }) }}
+      {{ govukButton({ text: "Continue" }) }}
+    </form>
+
+  </div>
+</div>
+{% endblock %}
