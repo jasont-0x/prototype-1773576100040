@@ -1,0 +1,42 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "What time do you want your first feed of the day?" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {{ govukBackLink({ text: "Back", href: "javascript:history.back()" }) }}
+
+    {% if errors and errors["preferred-times"] %}
+    {{ govukErrorSummary({
+      titleText: "There is a problem",
+      errorList: [{ text: errors["preferred-times"], href: "#preferred-times" }]
+    }) }}
+    {% endif %}
+
+    <form method="post" novalidate>
+    {{ govukRadios({
+      name: "preferred-times",
+      fieldset: {
+        legend: {
+          text: "What time do you want your first feed of the day?",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+      errorMessage: errors["preferred-times"] if errors else null,
+      value: data["preferred-times"],
+      items: [
+        { value: "6am", text: "6am" },
+        { value: "7am", text: "7am" },
+        { value: "8am", text: "8am" },
+        { value: "after-9am", text: "After 9am" }
+      ]
+    }) }}
+      {{ govukButton({ text: "Continue" }) }}
+    </form>
+
+  </div>
+</div>
+{% endblock %}
