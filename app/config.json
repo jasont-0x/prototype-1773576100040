@@ -1,0 +1,10 @@
+{
+  "serviceName": "Schedule your bottle feeds",
+  "serviceUrl": "/start",
+  "useAuth": false,
+  "plugins": {
+    "govuk-frontend": {
+      "rebrand": true
+    }
+  }
+}
