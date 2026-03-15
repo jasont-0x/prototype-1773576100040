@@ -1,0 +1,24 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "Schedule your bottle feeds" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">Schedule your bottle feeds</h1>
+    <p class="govuk-body">Use this service to book your feeding times and tell us what you prefer.</p>
+    <p class="govuk-body">You will need:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>your feeding preferences</li>
+      <li>times when you are usually awake</li>
+      <li>any dietary requirements</li>
+    </ul>
+    <p class="govuk-body">It takes around <strong>5 minutes</strong> to complete.</p>
+    {{ govukButton({
+      text: "Start now",
+      href: "/baby-age",
+      isStartButton: true
+    }) }}
+  </div>
+</div>
+{% endblock %}
