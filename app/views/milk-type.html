@@ -1,0 +1,42 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "What type of milk do you drink?" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {{ govukBackLink({ text: "Back", href: "javascript:history.back()" }) }}
+
+    {% if errors and errors["milk-type"] %}
+    {{ govukErrorSummary({
+      titleText: "There is a problem",
+      errorList: [{ text: errors["milk-type"], href: "#milk-type" }]
+    }) }}
+    {% endif %}
+
+    <form method="post" novalidate>
+    {{ govukRadios({
+      name: "milk-type",
+      fieldset: {
+        legend: {
+          text: "What type of milk do you drink?",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+      errorMessage: errors["milk-type"] if errors else null,
+      value: data["milk-type"],
+      items: [
+        { value: "breast-milk", text: "Breast milk" },
+        { value: "formula-milk", text: "Formula milk" },
+        { value: "cows-milk", text: "Cow's milk" },
+        { value: "plant-milk", text: "Plant-based milk" }
+      ]
+    }) }}
+      {{ govukButton({ text: "Continue" }) }}
+    </form>
+
+  </div>
+</div>
+{% endblock %}
