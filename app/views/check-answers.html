@@ -1,0 +1,79 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "Check your answers before sending" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {{ govukBackLink({ text: "Back", href: "javascript:history.back()" }) }}
+
+    <h1 class="govuk-heading-xl">Check your answers before sending</h1>
+
+    {{ govukSummaryList({
+      rows: [
+      {
+        key: { text: "How old are you?" },
+        value: { text: data["baby-age"] if data["baby-age"] else "Not answered" },
+        actions: {
+          items: [{
+            href: "/baby-age",
+            text: "Change",
+            visuallyHiddenText: "how old are you?"
+          }]
+        }
+      },
+      {
+        key: { text: "How often do you want to feed?" },
+        value: { text: data["feeding-frequency"] if data["feeding-frequency"] else "Not answered" },
+        actions: {
+          items: [{
+            href: "/feeding-frequency",
+            text: "Change",
+            visuallyHiddenText: "how often do you want to feed?"
+          }]
+        }
+      },
+      {
+        key: { text: "What time do you want your first feed of the day?" },
+        value: { text: data["preferred-times"] if data["preferred-times"] else "Not answered" },
+        actions: {
+          items: [{
+            href: "/preferred-times",
+            text: "Change",
+            visuallyHiddenText: "what time do you want your first feed of the day?"
+          }]
+        }
+      },
+      {
+        key: { text: "What type of milk do you drink?" },
+        value: { text: data["milk-type"] if data["milk-type"] else "Not answered" },
+        actions: {
+          items: [{
+            href: "/milk-type",
+            text: "Change",
+            visuallyHiddenText: "what type of milk do you drink?"
+          }]
+        }
+      },
+      {
+        key: { text: "Do you have any special feeding needs?" },
+        value: { text: data["special-instructions"] if data["special-instructions"] else "Not answered" },
+        actions: {
+          items: [{
+            href: "/special-instructions",
+            text: "Change",
+            visuallyHiddenText: "do you have any special feeding needs?"
+          }]
+        }
+      }
+      ]
+    }) }}
+
+    <form method="post" novalidate>
+      {{ govukButton({ text: "Confirm and send" }) }}
+    </form>
+
+  </div>
+</div>
+{% endblock %}
